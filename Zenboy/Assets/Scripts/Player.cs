@@ -11,10 +11,12 @@ public class Player : MonoBehaviour {
     public float noise = 0f;
     public float recoverConcentration;
     public Sprite[] cheers;
-    [HideInInspector]
-    public int score = 0;
-    [HideInInspector]
-    public bool paused;
+
+    PlayManager playManager;
+
+    private void Awake() {
+        playManager = FindObjectOfType<PlayManager>();
+    }
 
     private void Start() {
 
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour {
 
     private void Update() {
 
-        if (!paused) {
+        if (playManager.paused == false) {
             //Cambiar el sprite del personaje dependiendo de la concentración
             GetComponent<SpriteRenderer>().sprite = GetConcentrationSprite();
 
@@ -40,8 +42,9 @@ public class Player : MonoBehaviour {
 
     public void RestartGame() {
         concentration = 1;
-        paused = false;
+        playManager.paused = false;
         noise = 0f;
+        playManager.score = 0;
         NoisyObject.TurnOffAll();
     }
 
@@ -61,8 +64,7 @@ public class Player : MonoBehaviour {
         if (concentration <= 0) {
             GameObject.Find("GameOver").GetComponent<CanvasGroup>().alpha = 1;
             GameObject.Find("GameOver").GetComponent<CanvasGroup>().blocksRaycasts = true;
-            paused = true;
-            score = 0;
+            playManager.paused = true;
             concentration = 0f;
             NoisyObject.TurnOffAll();
         }
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour {
 
     private void UpdateScore() {
         Text text = GameObject.Find("Score").GetComponent<Text>();
-        text.text = score.ToString();
+        text.text = playManager.score.ToString();
     }
 
     private Sprite GetConcentrationSprite() {
@@ -92,8 +94,8 @@ public class Player : MonoBehaviour {
     IEnumerator Score() {
         while (true) {
             yield return new WaitForSeconds(1f);
-            if (!paused) {
-                score += 1;
+            if (!playManager.paused) {
+                playManager.score += 1;
             }
         }
     }

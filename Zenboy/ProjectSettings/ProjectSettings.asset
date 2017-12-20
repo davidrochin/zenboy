@@ -235,8 +235,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Users/jdrc8/Google Drive/Deliver Games/Deliver.keystore
+  AndroidKeyaliasName: davidrochin
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0

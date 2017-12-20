@@ -3,17 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Caller : MonoBehaviour {
-    public float minTime, maxTime;
+    public float initialMinTime, initialMaxTime;
 
-    private void Awake() {
+    /*[HideInInspector] public float minTime;
+    [HideInInspector] public float maxTime;*/
+
+    public float minTime;
+    public float maxTime;
+
+    PlayManager playManager;
+
+    void Awake() {
+        playManager = FindObjectOfType<PlayManager>();
         StartCoroutine("Call");
+    }
+
+    void Start() {
+        minTime = initialMinTime;
+        maxTime = initialMaxTime;
     }
 
     IEnumerator Call() {
         while (true) {
 
             //Revisar si está en pausa el Player
-            if (!FindObjectOfType<Player>().paused) {
+            if (!playManager.paused) {
 
                 //Esperar una cantidad aleatoria de segundos
                 yield return new WaitForSeconds(Random.Range(minTime, maxTime));

@@ -10,42 +10,19 @@ public class NoisyObject : MonoBehaviour {
     AudioSource audioSource;
     SpriteRenderer spriteRenderer;
 
+    Collider2D collider;
+
 	void Awake () {
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
     }
 	
 	void Update () {
 
         //Apagar el objeto si se tocó (Android)
-        if(Application.platform == RuntimePlatform.Android) {
-            if(Input.touchCount > 0) {
-                Touch touch = Input.GetTouch(0);
-                if(touch.phase == TouchPhase.Began) {
-
-                    //Transformar coordenadas de camara a posición global
-                    Vector3 worldPoint = Camera.main.ScreenToWorldPoint(touch.position);
-
-                    //Revisar si hizo click en el objeto
-                    if (Physics2D.OverlapPoint(worldPoint) == GetComponent<Collider2D>()) {
-                        TurnOff();
-                    }
-                }
-            }
-        }
-
-        //Apagar el objeto si se tocó (Windows)
-        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer) {
-            if (Input.GetMouseButtonDown(0)) {
-
-                //Transformar coordenadas de camara a posición global
-                Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                //Revisar si hizo click en el objeto
-                if (Physics2D.OverlapPoint(worldPoint) == GetComponent<Collider2D>()) {
-                    TurnOff();
-                }
-            }
+        if (TouchUtil.CheckIfTouched(collider)) {
+            TurnOff();
         }
     }
 

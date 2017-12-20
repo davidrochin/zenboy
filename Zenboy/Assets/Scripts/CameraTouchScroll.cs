@@ -14,7 +14,7 @@ public class CameraTouchScroll : MonoBehaviour {
     public float touchPanSpeed = 0.05f;
     public float clickPanSpeed = 1f;
 
-	void Start () {
+	void Awake () {
 		
 	}
 
@@ -51,7 +51,11 @@ public class CameraTouchScroll : MonoBehaviour {
 
     }
 
-    private void OnDrawGizmos() {
-        
+    private void OnDrawGizmosSelected() {
+        Camera camera = GetComponent<Camera>();
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(a, new Vector2(camera.aspect * camera.orthographicSize * 2f, camera.orthographicSize * 2f));
+        Gizmos.DrawWireCube(b, new Vector2(camera.aspect * camera.orthographicSize * 2f, camera.orthographicSize * 2f));
+        Gizmos.DrawLine(a,b);
     }
 }
