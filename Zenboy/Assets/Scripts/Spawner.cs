@@ -16,10 +16,6 @@ public class Spawner : MonoBehaviour {
     void Start () {
         StartCoroutine("SpawnRoutine");
 	}
-	
-	void Update () {
-		
-	}
 
     IEnumerator SpawnRoutine() {
         while (true) {
@@ -36,5 +32,10 @@ public class Spawner : MonoBehaviour {
                 yield return new WaitForEndOfFrame();
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawIcon(transform.position, "Sprites/UI/Circle.png", true);
     }
 }

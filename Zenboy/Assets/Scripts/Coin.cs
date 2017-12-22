@@ -7,17 +7,19 @@ public class Coin : MonoBehaviour {
 
     public Vector3 rollDirection = Vector3.left;
     public float rollSpeed = 1f;
+    public Vector2 firstPressPos;
 
     Collider2D collider;
 
-    void Awake() {
+    void Start() {
         collider = GetComponent<Collider2D>();
+        GetComponent<NoisyObject>().TurnOn();
     }
 
     void Update () {
 
         //Revisar si la moneda fue tocada
-        if (TouchUtil.CheckIfTouched(collider)) {
+        if (TouchUtil.CheckIfTouched(collider, NoisyObject.ShutdownMode.Touched)) {
             FindObjectOfType<PlayManager>().collectedCoins++;
             Destroy(gameObject);
         }

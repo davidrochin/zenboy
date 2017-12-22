@@ -11,7 +11,7 @@ public class Despawner : MonoBehaviour {
         if (detected != null) { Destroy(detected.gameObject); }
 	}
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, despawnRadius);
     }
