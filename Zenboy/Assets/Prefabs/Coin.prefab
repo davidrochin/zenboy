@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212197560788455682}
   - component: {fileID: 114065041878208572}
   - component: {fileID: 58631501764779440}
-  - component: {fileID: 114729143152625124}
   - component: {fileID: 82135748401523854}
   m_Layer: 0
   m_Name: Coin
@@ -152,21 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rollDirection: {x: -1, y: 0, z: 0}
   rollSpeed: 5
-  firstPressPos: {x: 0, y: 0}
---- !u!114 &114729143152625124
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1326342472617788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b94c5028f6c8c8419ec060139e6e800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shutdownMode: 0
-  turnedOn: 0
-  pointerLocation: {x: 0, y: 1.41, z: 0}
   firstPressPos: {x: 0, y: 0}
 --- !u!212 &212197560788455682
 SpriteRenderer:

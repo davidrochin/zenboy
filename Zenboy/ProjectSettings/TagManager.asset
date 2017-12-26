@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Object
   - Background
+  - Concentration Bar
+  - Box Spawn
   layers:
   - Default
   - TransparentFX
@@ -51,4 +53,7 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 1039925719
+    locked: 0
+  - name: UI
+    uniqueID: 1097693547
     locked: 0

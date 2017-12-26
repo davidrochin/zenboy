@@ -13,13 +13,12 @@ public class Coin : MonoBehaviour {
 
     void Start() {
         collider = GetComponent<Collider2D>();
-        GetComponent<NoisyObject>().TurnOn();
     }
 
     void Update () {
 
         //Revisar si la moneda fue tocada
-        if (TouchUtil.CheckIfTouched(collider, NoisyObject.ShutdownMode.Touched)) {
+        if (TouchUtil.CheckTouched(collider)) {
             FindObjectOfType<PlayManager>().collectedCoins++;
             Destroy(gameObject);
         }
